@@ -1,0 +1,19 @@
+.picture {
+	width: 300px;
+}
+
+.yellow {
+	background-color: goldenrod;
+}
+.blue {
+	background-color: lightblue;
+}
+
+.dotBorder {
+	border: 3px dotted black;
+}
+
+.person {
+	width: 500px;
+	height: 500px;
+}
