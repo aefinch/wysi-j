@@ -1,12 +1,12 @@
 var peoples = [
 	{
-	  title: "Real Estate Agent",
-	  name: "Phil Dunphy",
-	  bio: "Successful real estate agent and father in the show Modern Family. Extremely corny.",
-	  image: "http://d1stfe5sz9ezud.cloudfront.net/wp-content/uploads/2013/11/04124bd9f79e04594457d02e80dfdd16.gif",
-	  lifespan: {
-	    birth: 2009,
-	    death: 2017
+		title: "Real Estate Agent",
+		name: "Phil Dunphy",
+		bio: "Successful real estate agent and father in the show Modern Family. Extremely corny.",
+		image: "http://d1stfe5sz9ezud.cloudfront.net/wp-content/uploads/2013/11/04124bd9f79e04594457d02e80dfdd16.gif",
+	 	lifespan: {
+	    	birth: 2009,
+	    	death: 2017
 	  }
 	},
 	{
@@ -50,15 +50,15 @@ function addBorder(){
 
 function addEventListeners(){
 	 $("#container").on("click", ".person", addBorder);
+
 }
 (function loadPage(){
 	$("#everything").html("<input type='text' name='userInput' id='userInput'><br><div class='container' id='container'></div>");
 	for (var i=0; i<peoples.length; i++){
 		$("#container").append(`<div class = "person" id = "person${i+1}"><header><h3>${peoples[i].name}</h3><br>${peoples[i].title}</header><section><img class = "picture" src="${peoples[i].image}"><br><p class = "bio" id="cap${i}">${peoples[i].bio}</p></section><footer>Lifespan: ${peoples[i].lifespan.birth}-${peoples[i].lifespan.death}<br></footer><br></div>`);
 	}
+	$(".person:even").addClass("yellow");
+	$(".person:odd").addClass("blue");
 	addEventListeners();
 })();
 
-
-$(".person:even").addClass("yellow");
-$(".person:odd").addClass("blue");
