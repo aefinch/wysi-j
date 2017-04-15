@@ -31,24 +31,34 @@ var peoples = [
 	}
 ]
 
-function addBorder(){
-	$(this).addClass("dotBorder");
-	// $.each($(".person").removeClass("dotBorder"));
-	var selected = $(this);	
-	for (var y=0; y<$(".person"); y++){
-		if ($(".person")[i] !== selected){
-			$(".person")[i].removeClass("dotBorder");
-		}
+function updateBio(event){
+	var bio = $(".dotBorder").find(".bio");
+	var input = $("#userInput").val();
+	if (event.keyCode===13){
+		$("#userInput").val(" ");
+	} else if(input!==""){
+		bio.html(input);
 	}
+}
+
+function addBorder(){
+	$(".person").removeClass("dotBorder")
+	$(this).addClass("dotBorder");
+	$("#userInput").val("").focus();
+	$("#userInput").keyup(updateBio)
 };
 
-$("#everything").html("<input type='text' name='userInput' id='userInput'><br><div class='container' id='container'></div>");
-for (var i=0; i<peoples.length; i++){
-	$("#container").append(`<div class = "person" id = "person${i+1}"><header><h3>${peoples[i].name}</h3><br>${peoples[i].title}</header><section><img class = "picture" src="${peoples[i].image}"><br><p id="cap${i}">${peoples[i].bio}</p></section><footer>Lifespan: ${peoples[i].lifespan.birth}-${peoples[i].lifespan.death}<br></footer><br></div>`);
-	// $("#person[i]").click(function(){
-	// 	console.log("testing");
-	// })
+function addEventListeners(){
+	 $("#container").on("click", ".person", addBorder);
 }
+(function loadPage(){
+	$("#everything").html("<input type='text' name='userInput' id='userInput'><br><div class='container' id='container'></div>");
+	for (var i=0; i<peoples.length; i++){
+		$("#container").append(`<div class = "person" id = "person${i+1}"><header><h3>${peoples[i].name}</h3><br>${peoples[i].title}</header><section><img class = "picture" src="${peoples[i].image}"><br><p class = "bio" id="cap${i}">${peoples[i].bio}</p></section><footer>Lifespan: ${peoples[i].lifespan.birth}-${peoples[i].lifespan.death}<br></footer><br></div>`);
+	}
+	addEventListeners();
+})();
+
+
 $(".person:even").addClass("yellow");
 $(".person:odd").addClass("blue");
-$.each($(".person").click(addBorder));
